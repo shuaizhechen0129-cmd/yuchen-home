@@ -27,12 +27,18 @@ class ImageCarousel {
   }
 
   init() {
+    if (!this.container || this.slides.length <= 1) return;
+
     // Add dots indicator
     this.addDots();
 
     // Add event listeners
-    this.prevButton.addEventListener('click', () => this.prevSlide());
-    this.nextButton.addEventListener('click', () => this.nextSlide());
+    if (this.prevButton) {
+      this.prevButton.addEventListener('click', () => this.prevSlide());
+    }
+    if (this.nextButton) {
+      this.nextButton.addEventListener('click', () => this.nextSlide());
+    }
 
     // Touch events
     this.container.addEventListener('touchstart', (e) => this.handleTouchStart(e));
@@ -104,6 +110,7 @@ class ImageCarousel {
   handleTouchStart(e) {
     this.isDragging = true;
     this.startX = e.touches[0].clientX;
+    this.currentX = e.touches[0].clientX;
     this.pauseAutoPlay();
   }
 
@@ -211,9 +218,9 @@ class ImageCarousel {
 
 // Initialize all carousels
 document.addEventListener('DOMContentLoaded', () => {
-  new ImageCarousel('carousel-a');
-  new ImageCarousel('carousel-b');
-  new ImageCarousel('carousel-c');
+  document.querySelectorAll('.image-carousel[id]').forEach((carousel) => {
+    new ImageCarousel(carousel.id);
+  });
 });
 
 function getStoredLanguage() {
@@ -335,6 +342,8 @@ const translations = {
     "layouts.tab_c": "C户型",
     "layoutA.kicker": "A户型",
     "layoutA.title": "雨宸·安居",
+    "layoutA.metric1": "32m²",
+    "layoutA.metric2": "576间",
     "layoutA.metric3": "主力房型",
     "layoutA.text": "适合追求高效通勤和完整功能的一人居住者。卧室、厨房、收纳、独立阳台和干湿分离淋浴空间配置均衡，是项目中的核心主力产品。",
     "layoutA.bullet1": "L形桌面拓展办公、用餐与娱乐需求",
@@ -344,6 +353,8 @@ const translations = {
     "layoutA.alt": "雨宸公寓A户型展示",
     "layoutB.kicker": "B户型",
     "layoutB.title": "雨宸·欣居",
+    "layoutB.metric1": "32m²",
+    "layoutB.metric2": "85间",
     "layoutB.metric3": "精致一居",
     "layoutB.text": "B户型延续了项目统一的品质配置，在空间组织上更强调精巧与舒适，适合看重居住氛围、希望拥有完整一居动线的城市青年。",
     "layoutB.bullet1": "厨房、电器与卫浴配置齐全",
@@ -353,6 +364,8 @@ const translations = {
     "layoutB.alt": "雨宸公寓B户型展示",
     "layoutC.kicker": "C户型",
     "layoutC.title": "45m²舒展空间",
+    "layoutC.metric1": "45m²",
+    "layoutC.metric2": "21间",
     "layoutC.metric3": "更宽适居住",
     "layoutC.text": "面向更注重空间舒展度的人群，C户型在起居活动、收纳体量和厨房尺度上更从容，能承接更长期、更稳定的安居需求。",
     "layoutC.bullet1": "更大的活动面积提升居家松弛感",
@@ -391,9 +404,12 @@ const translations = {
     "layoutA.floorplan_title": "A户型平面图",
     "layoutA.floorplan_desc": "32平方米户型布局展示",
     "layoutA.living_title": "A户型卧室",
-    "layoutA.living_desc": "开放式设计，空间宽敞明亮",
+    "layoutA.living_desc": "睡眠、书桌与收纳自然衔接，日常起居更高效",
     "layoutA.bedroom_title": "A户型洗手间",
     "layoutA.bedroom_desc": "舒适的主卧空间，配备优质床垫",
+    "layoutA.bathroom_title": "A户型浴室",
+    "layoutA.bathroom2_title": "A户型卫生间",
+    "layoutA.bathroom_desc": "干湿分离设计，日常洗护动线清晰",
     "layoutA.kitchen_title": "A户型厨房",
     "layoutA.kitchen_desc": "功能齐全的现代化厨房",
     "layoutA.balcony_title": "A户型阳台",
@@ -426,8 +442,21 @@ const translations = {
     "layoutC.kitchen_desc": "宽敞的现代化厨房，功能齐全",
     "layoutC.dining_title": "C户型卫浴",
     "layoutC.dining_desc": "干湿分离设计，品质卫浴设施",
+    "layoutC.bathroom_title": "C户型卫浴",
+    "layoutC.bathroom_desc": "干湿分离设计，品质卫浴设施",
     "layoutC.balcony_title": "C户型阳台",
     "layoutC.balcony_desc": "宽敞的阳台，视野开阔",
+    "hero.text":
+      "位于上海市嘉定区菊园新区中心，邻近11号线嘉定北站与嘉闵线城北路站，以约32-45m²品质户型、共享社区空间、景观绿意与安心服务，为城市青年和企业人才提供更体面、更稳定、更有温度的租住生活。作为政府认证的保障性租赁住房，符合条件的租住支出可按政策提取住房公积金。",
+    "overview.card2.text": "共享健身房、瑜伽室、舞蹈室、洗衣房、阅览室与台球室，让生活从居住延展到社交与兴趣。",
+    "experience.card3.text": "健身房、瑜伽室、舞蹈室、洗衣房、阅览室与台球室，共同构成开放、友好、健康的社群生活场景。",
+    "amenities.text": "健身房、瑜伽室、舞蹈室、洗衣房、阅览室、台球室等共享空间，让生活从居住延展到运动、社交与兴趣。",
+    "amenities.gym.text": "扩建后的健身房配备有氧、力量和综合训练器材，让日常运动更便利、更有持续性。",
+    "amenities.yoga.title": "瑜伽室",
+    "amenities.yoga.text": "柔和安静的练习空间，适合瑜伽、拉伸、冥想与日常身心放松。",
+    "amenities.dance.title": "舞蹈室",
+    "amenities.dance.text": "配置镜面与开阔地面，支持舞蹈练习、形体训练和小型兴趣活动。",
+    "amenities.convenience.text": "自助打印机与自动售货机提供24小时便民服务，方便日常办公和生活补给。",
 
   },
   en: {
@@ -532,6 +561,8 @@ const translations = {
     "layouts.tab_c": "Layout C",
     "layoutA.kicker": "Layout A",
     "layoutA.title": "YUCHEN Anju",
+    "layoutA.metric1": "32 sqm",
+    "layoutA.metric2": "576 rooms",
     "layoutA.metric3": "signature layout",
     "layoutA.text": "Designed for residents who value efficient commuting and complete daily functionality, this is the core layout of the project with balanced living, kitchen, storage, balcony, and bathroom zones.",
     "layoutA.bullet1": "L-shaped desk expands space for work, dining, and entertainment",
@@ -541,6 +572,8 @@ const translations = {
     "layoutA.alt": "Layout A of YUCHEN Apartment",
     "layoutB.kicker": "Layout B",
     "layoutB.title": "YUCHEN Xinju",
+    "layoutB.metric1": "32 sqm",
+    "layoutB.metric2": "85 rooms",
     "layoutB.metric3": "compact one-bedroom",
     "layoutB.text": "Layout B continues the same quality baseline while placing greater emphasis on compact comfort, ideal for young residents who want a complete and refined one-bedroom experience.",
     "layoutB.bullet1": "Kitchen, appliances, and bathroom are all fully equipped",
@@ -550,6 +583,8 @@ const translations = {
     "layoutB.alt": "Layout B of YUCHEN Apartment",
     "layoutC.kicker": "Layout C",
     "layoutC.title": "45 sqm Spacious Layout",
+    "layoutC.metric1": "45 sqm",
+    "layoutC.metric2": "21 rooms",
     "layoutC.metric3": "more spacious living",
     "layoutC.text": "For residents who value more generous room scale, Layout C provides a more relaxed balance of activity space, storage volume, and kitchen dimension for long-term living.",
     "layoutC.bullet1": "Larger activity area creates a more relaxed home atmosphere",
@@ -585,13 +620,15 @@ const translations = {
     "amenities.cafe.text": "Community café providing a warm space for socializing and relaxation.",
     "layoutA.floorplan_title": "Layout A Floor Plan",
     "layoutA.floorplan_desc": "32 square meter layout display",
-    "layoutA.living_title": "Layout A Living Room",
-    "layoutA.living_desc": "Open design with spacious and bright space",
+    "layoutA.living_title": "Layout A Bedroom",
+    "layoutA.living_desc": "Sleeping, desk, and storage areas connect naturally for efficient daily living",
     "layoutA.bedroom_title": "Layout A Bedroom",
     "layoutA.bedroom_desc": "Comfortable master bedroom with quality mattress",
     "layoutA.kitchen_title": "Layout A Kitchen",
     "layoutA.kitchen_desc": "Fully equipped modern kitchen",
     "layoutA.bathroom_title": "Layout A Bathroom",
+    "layoutA.bathroom2_title": "Layout A Toilet",
+    "layoutA.bathroom_desc": "Wet-dry separation keeps daily washing routines clear and practical",
     "layoutA.balcony_title": "Layout A Balcony",
     "layoutA.balcony_desc": "Private balcony with good daylight and ventilation",
     "layoutA.storage_title": "Layout A Storage",
@@ -620,15 +657,26 @@ const translations = {
     "layoutC.bedroom_desc": "Comfortable master bedroom with ample space",
     "layoutC.kitchen_title": "Layout C Kitchen",
     "layoutC.kitchen_desc": "Spacious modern kitchen, fully equipped",
-    "layoutC.dining_title": "Layout C Dining Room",
-    "layoutC.dining_desc": "Separate dining space for comfortable meals",
+    "layoutC.dining_title": "Layout C Bathroom",
+    "layoutC.dining_desc": "Wet-dry separation with quality bathroom fixtures",
+    "layoutC.bathroom_title": "Layout C Bathroom",
+    "layoutC.bathroom_desc": "Wet-dry separation with quality bathroom fixtures",
     "layoutC.balcony_title": "Layout C Balcony",
     "layoutC.balcony_desc": "Spacious balcony with open views",
     "layoutC.storage_title": "Layout C Storage",
     "layoutC.storage_desc": "Large-capacity storage system making full use of space",
+    "hero.text":
+      "Located in the heart of Juyuan New Area in Jiading, Shanghai, near Jiading North Station on Metro Line 11 and Chengbeilu Station on the Jiamin Line, YUCHEN Apartment offers quality homes of about 32-45 sqm, shared community spaces, green surroundings, and reliable living services for young professionals and enterprise talent. As a government-certified affordable rental housing project, eligible rental expenses may be withdrawn from the housing provident fund according to policy.",
+    "overview.card2.text": "Shared gym, yoga room, dance studio, laundry room, reading room, and billiards room extend daily living into social life and personal interests.",
+    "experience.card3.text": "The gym, yoga room, dance studio, laundry room, reading room, and billiards room shape an open, friendly, and healthy community culture.",
+    "amenities.text": "Shared spaces including the gym, yoga room, dance studio, laundry room, reading room, and billiards room extend daily living into wellness, social life, and personal interests.",
+    "amenities.gym.text": "The expanded gym includes cardio, strength, and functional training equipment, making everyday fitness easier to maintain.",
+    "amenities.yoga.title": "Yoga Room",
+    "amenities.yoga.text": "A calm practice space for yoga, stretching, meditation, and everyday relaxation.",
+    "amenities.dance.title": "Dance Studio",
+    "amenities.dance.text": "Mirrored walls and open floor space support dance practice, body conditioning, and small interest-based activities.",
+    "amenities.convenience.text": "Self-service printers and vending machines provide 24-hour support for daily office needs and living essentials.",
   },
-  "amenities.convenience.title": "24小时便民设施",
-  "amenities.convenience.text": "自助打印机、售货机，24小时为您提供便民服务，方便您的日常生活.",
 };
 
 function applyLanguage(language) {

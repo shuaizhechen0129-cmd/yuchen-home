@@ -1584,33 +1584,26 @@ main {
   background: var(--bg-secondary);
 }
 
+.amenities-feature-grid,
 .amenities-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 2rem;
 }
 
-.amenities-bottom-row {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+.amenities-feature-grid {
+  grid-template-columns: 1.35fr 1fr 1fr;
 }
 
-.amenities-bottom-row .amenity-card {
-  max-width: 400px;
+.amenities-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 /* Responsive adjustments for amenities */
 @media (max-width: 1024px) {
+  .amenities-feature-grid,
   .amenities-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .amenities-bottom-row {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1630,17 +1623,19 @@ main {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.amenity-card img {
+.amenity-card img,
+.amenity-carousel .carousel-slide img {
   width: 100%;
   height: 300px;
   object-fit: cover;
   transition: var(--transition);
 }
 
-.amenity-card:hover img {
+.amenity-card:hover > img {
   transform: scale(1.05);
 }
 
+.amenity-content,
 .amenity-card-content {
   padding: 2rem;
   flex: 1;
@@ -1648,6 +1643,7 @@ main {
   flex-direction: column;
 }
 
+.amenity-content h3,
 .amenity-card-content h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -1655,11 +1651,40 @@ main {
   font-weight: 700;
 }
 
+.amenity-content p,
 .amenity-card-content p {
   color: var(--text-secondary);
   line-height: 1.7;
   font-size: 1rem;
   flex: 1;
+}
+
+.amenity-carousel {
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: none;
+  cursor: grab;
+}
+
+.amenity-carousel .carousel-container {
+  height: 300px;
+}
+
+.amenity-carousel .carousel-nav {
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.amenity-carousel .carousel-nav.prev {
+  left: 0.75rem;
+}
+
+.amenity-carousel .carousel-nav.next {
+  right: 0.75rem;
+}
+
+.amenity-carousel .carousel-dots {
+  bottom: 0.75rem;
 }
 
 .amenity-card::before {
@@ -1681,19 +1706,24 @@ main {
 
 /* Responsive adjustments for amenities */
 @media (max-width: 768px) {
+  .amenities-feature-grid,
   .amenities-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
-  .amenity-card img {
+  .amenity-card img,
+  .amenity-carousel .carousel-slide img,
+  .amenity-carousel .carousel-container {
     height: 250px;
   }
 
+  .amenity-content,
   .amenity-card-content {
     padding: 1.5rem;
   }
 
+  .amenity-content h3,
   .amenity-card-content h3 {
     font-size: 1.25rem;
   }

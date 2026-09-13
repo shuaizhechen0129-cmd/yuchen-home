@@ -122,7 +122,7 @@
 
           <div class="hero-visual reveal">
             <div class="hero-card hero-card-main">
-              <img src="images/page-1.png"  data-i18n-attr="alt,hero.image_alt">
+              <img src="images/page-1.png" alt="雨宸公寓项目主视觉" data-i18n="hero.image_alt" data-i18n-attr="alt">
             </div>
             <div class="hero-card hero-card-note">
               <strong data-i18n="hero.note_text">地铁可达 · 绿意环绕 · 社群共享 · 安心居住</strong>
@@ -545,46 +545,99 @@
           <div class="section-heading reveal">
             <p class="eyebrow" data-i18n="amenities.eyebrow">Shared Amenities</p>
             <h2 data-i18n="amenities.title">共享社区空间</h2>
-            <p data-i18n="amenities.text">健身房、洗衣房、阅览室、台球室等共享空间，让生活从居住延展到社交与兴趣。</p>
+            <p data-i18n="amenities.text">健身房、瑜伽室、舞蹈室、洗衣房、阅览室、台球室等共享空间，让生活从居住延展到运动、社交与兴趣。</p>
           </div>
 
-          <div class="amenities-grid reveal">
-            <article class="amenity-card reveal top-row">
-              <img src="images/amenities/健身房.jpg" alt="健身房" decoding="async">
+          <div class="amenities-feature-grid reveal">
+            <article class="amenity-card amenity-card-feature reveal">
+              <div class="image-carousel amenity-carousel" id="carousel-gym">
+                <div class="carousel-container">
+                  <div class="carousel-slide">
+                    <img src="images/amenities/健身房1.jpg" alt="健身房器械区" loading="lazy" decoding="async">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="images/amenities/健身房2.jpg" alt="健身房力量训练区" loading="lazy" decoding="async">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="images/amenities/健身房3.jpg" alt="健身房有氧训练区" loading="lazy" decoding="async">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="images/amenities/健身房4.jpg" alt="健身房综合训练区" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <button class="carousel-nav prev" aria-label="Previous image"></button>
+                <button class="carousel-nav next" aria-label="Next image"></button>
+              </div>
               <div class="amenity-content">
                 <h3 data-i18n="amenities.gym.title">健身房</h3>
-                <p data-i18n="amenities.gym.text">配备专业健身器材，让您在繁忙的工作之余，保持健康活力。</p>
+                <p data-i18n="amenities.gym.text">扩建后的健身房配备有氧、力量和综合训练器材，让日常运动更便利、更有持续性。</p>
               </div>
             </article>
-            <article class="amenity-card reveal top-row">
-              <img src="images/amenities/洗衣房.jpg" alt="洗衣房" decoding="async">
+            <article class="amenity-card reveal">
+              <div class="image-carousel amenity-carousel" id="carousel-yoga">
+                <div class="carousel-container">
+                  <div class="carousel-slide">
+                    <img src="images/amenities/瑜伽室1.jpg" alt="瑜伽室练习空间" loading="lazy" decoding="async">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="images/amenities/瑜伽室2.jpg" alt="瑜伽室休憩空间" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <button class="carousel-nav prev" aria-label="Previous image"></button>
+                <button class="carousel-nav next" aria-label="Next image"></button>
+              </div>
+              <div class="amenity-content">
+                <h3 data-i18n="amenities.yoga.title">瑜伽室</h3>
+                <p data-i18n="amenities.yoga.text">柔和安静的练习空间，适合瑜伽、拉伸、冥想与日常身心放松。</p>
+              </div>
+            </article>
+            <article class="amenity-card reveal">
+              <div class="image-carousel amenity-carousel" id="carousel-dance">
+                <div class="carousel-container">
+                  <div class="carousel-slide">
+                    <img src="images/amenities/舞蹈室1.jpg" alt="舞蹈室镜面练习区" loading="lazy" decoding="async">
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="images/amenities/舞蹈室2.jpg" alt="舞蹈室活动空间" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <button class="carousel-nav prev" aria-label="Previous image"></button>
+                <button class="carousel-nav next" aria-label="Next image"></button>
+              </div>
+              <div class="amenity-content">
+                <h3 data-i18n="amenities.dance.title">舞蹈室</h3>
+                <p data-i18n="amenities.dance.text">配置镜面与开阔地面，支持舞蹈练习、形体训练和小型兴趣活动。</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="amenities-grid amenities-life-grid reveal">
+            <article class="amenity-card reveal">
+              <img src="images/amenities/洗衣房.jpg" alt="洗衣房" loading="lazy" decoding="async">
               <div class="amenity-content">
                 <h3 data-i18n="amenities.laundry.title">洗衣房</h3>
                 <p data-i18n="amenities.laundry.text">配备洗衣机和烘干机，方便您的日常生活，省时省力。</p>
               </div>
             </article>
-            <article class="amenity-card reveal top-row">
-              <img src="images/amenities/休闲区与阅览室.jpg" alt="阅览室" decoding="async">
+            <article class="amenity-card reveal">
+              <img src="images/amenities/休闲区与阅览室.jpg" alt="阅览室" loading="lazy" decoding="async">
               <div class="amenity-content">
                 <h3 data-i18n="amenities.reading.title">阅览室</h3>
                 <p data-i18n="amenities.reading.text">安静舒适的阅读空间，供您学习、工作或放松身心。</p>
               </div>
             </article>
-          </div>
-
-          <div class="amenities-bottom-row reveal">
-            <article class="amenity-card">
-              <img src="images/amenities/台球室.jpg" alt="台球室" decoding="async">
+            <article class="amenity-card reveal">
+              <img src="images/amenities/台球室.jpg" alt="台球室" loading="lazy" decoding="async">
               <div class="amenity-content">
                 <h3 data-i18n="amenities.billiards.title">台球室</h3>
                 <p data-i18n="amenities.billiards.text">专业的台球设备，让您在闲暇时光享受运动的乐趣。</p>
               </div>
             </article>
-            <article class="amenity-card">
-              <img src="images/amenities/24小时自助打印机 自动售货机.jpg" alt="24小时便民设施" decoding="async">
+            <article class="amenity-card reveal">
+              <img src="images/amenities/24小时自助打印机 自动售货机.jpg" alt="24小时便民设施" loading="lazy" decoding="async">
               <div class="amenity-content">
                 <h3 data-i18n="amenities.convenience.title">24小时便民设施</h3>
-                <p data-i18n="amenities.convenience.text">自助打印机、售货机，24小时为您提供便民服务，方便您的日常生活。</p>
+                <p data-i18n="amenities.convenience.text">自助打印机与自动售货机提供24小时便民服务，方便日常办公和生活补给。</p>
               </div>
             </article>
           </div>
@@ -617,7 +670,7 @@
                       </div>
 
           <figure class="contact-media reveal">
-            <img src="images/page-17.png" data-i18n="contact.media_alt" decoding="async">
+            <img src="images/page-17.png" alt="雨宸公寓官方联系方式与二维码" data-i18n="contact.media_alt" data-i18n-attr="alt" decoding="async">
             <figcaption data-i18n="contact.caption">
               扫码关注雨宸公寓客服号，获取最新房源与入住信息。
               <br>
